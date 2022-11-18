@@ -3,6 +3,7 @@ import pandas as pd
 import argparse
 import re
 import copy
+import numpy as np
 from tqdm import tqdm
 from data_ingestion import read_params,get_data
 from sklearn.model_selection import train_test_split
@@ -44,6 +45,7 @@ def clean_text(_text,lang,dic):
             _text = re.sub(cn, contractions_dict[cn], _text)
     elif lang == "hi":
         _text = remove_sc(_line=_text, lang=lang)
+
     return _text
 
 
@@ -55,7 +57,7 @@ def preprocess(config_path):
     dic=contractions(config_path)
 
     tqdm.pandas()
-    df["0"]=df["0"].progress_map(lambda x:clean_text(copy.deepcopy(x),lang='en',dic=dic))
+    df["0"]=df["0"].progress_map(lambda x:clean_text(x,lang='en',dic=dic))
     df["1"]=df["1"].progress_map(lambda x:clean_text(x,lang='hi',dic=dic))
 
     df["eng_len"] = df["0"].str.len()

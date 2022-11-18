@@ -25,8 +25,8 @@ common.set_resources_path(INDIC_NLP_RESOURCES)
 
 # Packages for model building & inferences
 from src.models.transformer import  Transformer
-from model_utility.translator import beam_search
-from model_utility.utils import save_checkpoint#karna hai
+#from model_utility.translator import beam_search
+from trainer_utils import save_checkpoint#karna hai
 
 # Data Prep
 # Settings for handling english text
@@ -48,7 +48,7 @@ hindi_txt = Field(tokenize=tokenize_hindi, init_token="<sos>", eos_token="<eos>"
 
 # Defining Tabular Dataset
 data_fields = [('eng_text', english_txt), ('hindi_text', hindi_txt)]
-train_dt, val_dt = TabularDataset.splits(path='./', train='train_sm.csv', validation='val_sm.csv', format='csv', fields=data_fields)
+train_dt, val_dt = TabularDataset.splits(path='./', train='data/processed/train_sm.csv', validation='data/processed/val_sm.csv', format='csv', fields=data_fields)
 
 # Building word vocab
 english_txt.build_vocab(train_dt, max_size=10000, min_freq=2)
@@ -66,6 +66,8 @@ batch_size = 256
 # Defining Iterator
 train_iter = BucketIterator(train_dt, batch_size=batch_size, sort_key=lambda x: len(x.eng_text), shuffle=True)
 val_iter = BucketIterator(val_dt, batch_size=batch_size, sort_key=lambda x: len(x.eng_text), shuffle=True)
+
+print(train_iter)
 
 # Model hyper-parameters
 src_vocab_size = len(english_txt.vocab)

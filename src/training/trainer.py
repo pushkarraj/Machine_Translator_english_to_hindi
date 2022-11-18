@@ -12,21 +12,11 @@ import sys
 from indicnlp import common
 from indicnlp.tokenize import indic_tokenize
 
-# Settings for handling devnagri text
-# INDIC_NLP_LIB_HOME = r"/indic_nlp_library"
-# INDIC_NLP_RESOURCES = r"/indic_nlp_resources"
-INDIC_NLP_LIB_HOME = r"/Translation Model/indic_nlp_library"
-INDIC_NLP_RESOURCES = r"/Translation Model/indic_nlp_resources"
-# Add library to Python path
-sys.path.append(r'{}/src'.format(INDIC_NLP_LIB_HOME))
-# Set environment variable for resources folder
-common.set_resources_path(INDIC_NLP_RESOURCES)
 
 
 # Packages for model building & inferences
 from src.models.transformer import  Transformer
-#from model_utility.translator import beam_search
-from trainer_utils import save_checkpoint#karna hai
+from trainer_utils import save_checkpoint
 
 # Data Prep
 # Settings for handling english text
@@ -59,7 +49,7 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 save_model = True
 
 # Training hyperparameters
-num_epochs = 10
+num_epochs = 1
 learning_rate = 3e-4
 batch_size = 256
 

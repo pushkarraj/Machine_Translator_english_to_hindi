@@ -38,7 +38,7 @@ pred_data_preparation:
 
 
 saved_models:
-  model_dir: models
+  model_dir: nlp_models
 
 data_preprocessing:
   preprocessed_data_dir: data/preprocessed_data

@@ -1,6 +1,6 @@
 import torch
 import torch.nn as nn
-from blocks import SelfAttention, TransformerBlock, PositionalEncoding, DecoderBlock
+from src.models.blocks import SelfAttention, TransformerBlock, PositionalEncoding, DecoderBlock
 
 class Encoder(nn.Module):
     def __init__(self, src_vocab_size, embed_size, num_layers, heads, device, forward_expansion, dropout, max_len):

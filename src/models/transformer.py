@@ -1,6 +1,6 @@
 import torch
 import torch.nn as nn
-from encoder_decoder import Encoder,Decoder
+from src.models.encoder_decoder import Encoder,Decoder
 
 """
 Input shape for Transformer block = (num_sample, seq_len)  

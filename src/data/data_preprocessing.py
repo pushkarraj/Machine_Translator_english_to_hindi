@@ -60,8 +60,8 @@ def preprocess(config_path):
     df["0"]=df["0"].progress_map(lambda x:clean_text(x,lang='en',dic=dic))
     df["1"]=df["1"].progress_map(lambda x:clean_text(x,lang='hi',dic=dic))
 
-    df["eng_len"] = df["0"].str.len()
-    df["hindi_len"] = df["1"].str.len()
+    df["eng_len"] = df["0"].str.count(" ")
+    df["hindi_len"] = df["1"].str.count(" ")
     small_len_data = df.query('eng_len < 50 & hindi_len < 50')
 
     train_path=config["data_source"]["training_file"]

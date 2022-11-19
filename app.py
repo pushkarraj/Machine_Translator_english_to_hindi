@@ -14,9 +14,9 @@ def index():
     if request.method == 'POST':
         tr=translator.get_translation(request.form['content'])
         print(tr)
-        return render_template('results.html', tr=tr)  # showing the review to the user
+        return render_template('results.html', tr=tr[:-5])  # showing the review to the user
 
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)

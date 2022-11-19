@@ -1,0 +1,35 @@
+base:
+  project: Wafer-Quality-Project
+  random_state: 42
+  target_col: Output
+
+data_source:
+  master_file: data/raw/master.csv
+  training_file: data/processed/train.csv
+  validation_file: data/processed/val.csv
+  small_training_file: data/processed/train_sm.csv
+  small_validation_file: data/processed/val_sm.csv
+
+
+data_contractions:
+  contract_file: data/processed/contractions.txt
+
+
+saved_models:
+  model_dir: nlp_models
+
+
+artifacts_dir:
+  general: general
+  mlflow: mlflow_artifacts
+
+
+training:
+  Transformer:
+    embedding_size : 512
+    num_heads : 8
+    num_layers : 3
+    dropout : 0.10
+    max_len : 10000
+    forward_expansion : 4
+    trg_pad_idx : 0
